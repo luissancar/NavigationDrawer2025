@@ -58,7 +58,27 @@ fun Pantalla03(navController: NavHostController) {
             .background(Color.Green)
     ) {
         Text(
-            text = "Pantalla 03",
+            text = "Pantalla3",
+            modifier = Modifier
+                .align(Alignment.Center)
+                // .clickable { navController.navigate("Screen01") }
+               // .clickable { navController.navigate(Routes.Screen01.route) }
+                .clickable { navController.navigate(Routes.Screen04.createRouteScreen04("parametro01")) }
+        )
+    }
+}
+
+
+
+@Composable
+fun Pantalla04(navController: NavHostController, name: String) {
+    Box(
+        Modifier
+            .fillMaxSize()
+            .background(Color.Green)
+    ) {
+        Text(
+            text = name,
             modifier = Modifier
                 .align(Alignment.Center)
                 // .clickable { navController.navigate("Screen01") }
