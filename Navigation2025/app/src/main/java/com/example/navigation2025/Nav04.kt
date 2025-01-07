@@ -19,7 +19,8 @@ fun Nav04(name: String, modifier: Modifier = Modifier) {
         composable(route = Routes.Screen03.route) { Pantalla03(navController = navigationController) }
         composable(
             route = Routes.Screen04.route,
-            arguments = listOf(navArgument("name") { type = NavType.StringType })
+            arguments = listOf(navArgument("name") {
+                type = NavType.StringType })
         ) { backStackEntry ->
             Pantalla04(
                 navController = navigationController,
