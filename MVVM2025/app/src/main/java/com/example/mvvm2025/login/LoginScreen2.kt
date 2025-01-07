@@ -2,19 +2,12 @@ package com.example.mvvm2025.login
 
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -23,7 +16,9 @@ fun LoginScreen2(loginViewModel: LoginViewModel) {
    // var email by remember { mutableStateOf("") }
     val password:String by loginViewModel.password.observeAsState("")
    // var password by remember { mutableStateOf("") }
-    var passwordVisible by remember { mutableStateOf(false) }
+    var passwordVisible: Boolean by remember { mutableStateOf(false) }
+
+    val isPasswordVisible:Boolean by loginViewModel.isPasswordVisible.observeAsState(false)
 
 
     val isLoginEnable:Boolean by loginViewModel.isLoginEnable.observeAsState(false)
@@ -56,11 +51,12 @@ fun LoginScreen2(loginViewModel: LoginViewModel) {
             label = { Text("Password") },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
-            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            visualTransformation = loginViewModel.changeVisualTransformation(isPasswordVisible),
+            //if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
-                IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                IconButton(onClick = { loginViewModel.changePasswordVisible() }) {
                     Icon(
-                        imageVector = if (passwordVisible) Icons.Default.Edit else Icons.Default.Lock,
+                        imageVector = loginViewModel.changeImageVector(),
                         contentDescription = if (passwordVisible) "Hide password" else "Show password"
                     )
                 }
@@ -77,5 +73,6 @@ fun LoginScreen2(loginViewModel: LoginViewModel) {
         ) {
             Text("Login")
         }
+       // Text(text = isPasswordVisible.toString())
     }
 }
