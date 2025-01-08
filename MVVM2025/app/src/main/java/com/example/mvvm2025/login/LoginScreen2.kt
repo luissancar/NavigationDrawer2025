@@ -57,7 +57,7 @@ fun LoginScreen2(loginViewModel: LoginViewModel) {
                 IconButton(onClick = { loginViewModel.changePasswordVisible() }) {
                     Icon(
                         imageVector = loginViewModel.changeImageVector(),
-                        contentDescription = if (passwordVisible) "Hide password" else "Show password"
+                        contentDescription = loginViewModel.contentDescription()
                     )
                 }
             }

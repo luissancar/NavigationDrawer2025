@@ -59,4 +59,13 @@ class LoginViewModel : ViewModel() {
             return Icons.Default.Lock
     }
 
+    fun contentDescription(): String{
+
+            if (_isPasswordVisible.value == true)
+                return "Hide password"
+            else
+                return "Show password"
+
+    }
+
 }
